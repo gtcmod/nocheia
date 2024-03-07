@@ -1,1 +1,24 @@
+name: Execução Diária
 
+on:
+  schedule:
+    - cron: '0 0 * * *' # Agenda a execução diária à meia-noite
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Executar script
+      run: node caminho/do/seu/script.js
